@@ -1,28 +1,30 @@
-h1. Mongoid Taggable
+h1. Mongoid Categorizable
 
-Mongoid Taggable provides some helpers to create taggable documents.
+Mongoid Categorizable provides some helpers to create categorizable documents.
+
+**WARNING: ignore this fork, this is just pure syntactic sugar :)**
 
 h2. Installation
 
 You can simple install from rubygems:
 
-bc. gem install mongoid_taggable
+bc. gem install mongoid_categorizable
 
 or in Gemfile:
 
-bc. gem 'mongoid_taggable'
+bc. gem 'mongoid_categorizable'
 
 or as a Rails Plugin:
 
-bc. script/plugin install git://github.com/wilkerlucio/mongoid_taggable.git
+bc. script/plugin install git://github.com/icebreaker/mongoid_categorizable.git
 
 h2. Basic Usage
 
-To make a document taggable you need to include @Mongoid::Taggable@ into your document:
+To make a document categorizable you need to include @Mongoid::Categorizable@ into your document:
 
 bc.. class Post
   include Mongoid::Document
-  include Mongoid::Taggable
+  include Mongoid::Categorizable
 
   field :title
   field :content
@@ -40,39 +42,39 @@ bc.. <% form_for @post do |f| %>
     <%= f.text_area :content %>
   </p>
   <p>
-    <%= f.label :tags %><br />
-    <%= f.text_field :tags %>
+    <%= f.label :categories %><br />
+    <%= f.text_field :categories %>
   </p>
   <p>
     <button type="submit">Send</button>
   </p>
 <% end %>
 
-p. In this case, the text fields for tags should receive the list of tags separated by comma (See below for how to change the separator).
+p. In this case, the text fields for categories should receive the list of categories separated by comma (See below for how to change the separator).
 
-p. Then your document will have the @tags@ and @tags_array@ getter and setter. @tags@ is as a plain string with tags separated by comma, and @tags_array@ an array representation.
+p. Then your document will have the @categories@ and @categories_array@ getter and setter. @categories@ is as a plain string with categories separated by comma, and @categories_array@ an array representation.
 
-h2. Finding Objects by Tag
+h2. Finding Objects by Category
 
-p. Tagged models get a scope called @tagged_with@, @tagged_with_all@, and @tagged_with_any@:
+p. Categorized models get a scope called @categorized_with@, @categorized_with_all@, and @categorized_with_any@:
 
-bc.. MyModel.tagged_with('foo')
-MyModel.published.tagged_with('foo').count
-MyModel.tagged_with_all('foo', 'bar')
-MyModel.tagged_with_all(['foo', 'bar'])
-MyModel.tagged_with_any('foo', 'bar')
-MyModel.tagged_with_any(['foo', 'bar'])
+bc.. MyModel.categorized_with('foo')
+MyModel.published.categorized_with('foo').count
+MyModel.categorized_with_all('foo', 'bar')
+MyModel.categorized_with_all(['foo', 'bar'])
+MyModel.categorized_with_any('foo', 'bar')
+MyModel.categorized_with_any(['foo', 'bar'])
 
-h2. Tags Indexing
+h2. Categories Indexing
 
-This module will automatically create an index of tags and their counts for you after saving the document. This can be used for a tag cloud. See the following example to understand how to use it:
+This module will automatically create an index of categories and their counts for you after saving the document. This can be used for a category cloud. See the following example to understand how to use it:
 
-bc.. Post.create!(:tags => "food,ant,bee")
-Post.create!(:tags => "juice,food,bee,zip")
-Post.create!(:tags => "honey,strip,food")
+bc.. Post.create!(:categories => "food,ant,bee")
+Post.create!(:categories => "juice,food,bee,zip")
+Post.create!(:categories => "honey,strip,food")
 
-Post.tags # will retrieve ["ant", "bee", "food", "honey", "juice", "strip", "zip"]
-Post.tags_with_weight # will retrieve:
+Post.categories # will retrieve ["ant", "bee", "food", "honey", "juice", "strip", "zip"]
+Post.categories_with_weight # will retrieve:
 # [
 #   ['ant', 1],
 #   ['bee', 2],
@@ -87,9 +89,9 @@ p. If you don't want to use this feature, it is good to disable it to improve pe
 
 bc.. class Post
   include Mongoid::Document
-  include Mongoid::Taggable
+  include Mongoid::Categorizable
 
-  disable_tags_index! # will disable index creation
+  disable_categories_index! # will disable index creation
 
   field :title
   field :content
@@ -97,13 +99,13 @@ end
 
 h2. Changing default separator
 
-To change the default separator you may call the @tags_separator@ class method:
+To change the default separator you may call the @categories_separator@ class method:
 
 bc.. class Post
   include Mongoid::Document
-  include Mongoid::Taggable
+  include Mongoid::Categorizable
 
-  tags_separator ';' # will change tags separator to ;
+  categories_separator ';' # will change categories separator to ;
 
   field :title
   field :content
