@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{mongoid_categorizable}
+  s.name = %q{mongoid_taggable}
   s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Wilker Lucio", "Kris Kowalik"]
   s.date = %q{2011-05-04}
-  s.description = %q{Mongoid Categorizable provides some helpers to create categorizable documents.}
+  s.description = %q{Mongoid Taggable provides some helpers to create taggable documents.}
   s.email = %q{wilkerlucio@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -21,17 +21,17 @@ Gem::Specification.new do |s|
     "README.textile",
     "Rakefile",
     "init.rb",
-    "lib/mongoid/categorizable.rb",
-    "lib/mongoid_categorizable.rb",
-    "mongoid_categorizable.gemspec",
+    "lib/mongoid/taggable.rb",
+    "lib/mongoid_taggable.rb",
+    "mongoid_taggable.gemspec",
     "rails/init.rb",
-    "spec/mongoid/categorizable_spec.rb",
+    "spec/mongoid/taggable_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/wilkerlucio/mongoid_categorizable}
+  s.homepage = %q{http://github.com/wilkerlucio/mongoid_taggable}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.7.2}
-  s.summary = %q{Mongoid categorizable behaviour}
+  s.summary = %q{Mongoid taggable behaviour}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

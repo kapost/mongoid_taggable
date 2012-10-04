@@ -1,1 +1,1 @@
-require 'mongoid/categorizable'
+require 'mongoid/taggable'
